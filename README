@@ -3,3 +3,32 @@ Designing for Scalability with Erlang/OTP
 Steve Vinoski, Francesco Cesarini
 O'Reilly Media, Inc.
 2016
+
+Chapter 1. Introduction
+
+Scalable refers to how well a computing system can adapt to changes in load or
+available resources.
+
+Distributed refers to how systems are clustered together and interact with each
+other.
+
+Systems that are fault tolerant continue to operate predictably when things in
+their environment are failing.
+
+By soft real-time, we mean the predictability of response and latency, handling
+a constant throughput, and guaranteeing a response within an acceptable time
+frame.
+
+High availability minimizes or completely eliminates downtime as a result of
+bugs, outages, upgrades, or other operational activities.
+
+OTP is a domain-independent set of frameworks, principles, and patterns that
+guide and support the structure, design, implementation, and deployment of
+Erlang systems.
+
+Chapter 2. Introducing Erlang
+
+Recursion and Pattern Matching
+Functional Influence
+  Fun with Anonymous Functions
+  List Comprehensions: Generate and Test
