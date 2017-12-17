@@ -29,6 +29,53 @@ Erlang systems.
 Chapter 2. Introducing Erlang
 
 Recursion and Pattern Matching
+
 Functional Influence
   Fun with Anonymous Functions
   List Comprehensions: Generate and Test
+
+Processes and Message Passing
+
+Fail Safe!
+
+Links and Monitors for Supervision
+
+  Links
+
+    Reason  Trapping exits                  Not trapping exits
+    ----------------------------------------------------------
+    normal  Receives {'EXIT', Pid, normal}  Nothing happens
+    kill    Terminates with reason killed   Terminates with reason killed
+    Other   Receives {'EXIT', Pid, Other}   Terminates with reason Other
+
+  Monitors
+
+Records
+
+Maps
+
+Macros
+
+Upgrading Modules
+
+ETS: Erlang Term Storage
+
+  Set
+    Each key-value tuple can occur only once.
+  Bag
+    Each key-value tuple combination can only occur once, but a key can appear
+    multiple times.
+  Duplicate bag
+    Tuples can be duplicated.
+  Ordered set
+    These have the same restriction as sets, but the tuples can be visited
+    in order by key.
+
+  public
+    Accessible to all processes.
+  private
+    Accessible to the owning process only.
+  protected
+    All processes can read the table, but only the owner can write to it.
+
+Distributed Erlang
