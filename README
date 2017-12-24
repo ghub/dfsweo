@@ -79,3 +79,41 @@ ETS: Erlang Term Storage
     All processes can read the table, but only the owner can write to it.
 
 Distributed Erlang
+
+Chapter 3. Behaviors
+
+Process Skeletons
+
+  Be spawned and initialized
+  Repeatedly receive messages, handle them, and send replies
+  Be terminated (normally or abnormally)
+
+Design Patterns
+
+  Generic                         Specific
+  ----------------------------------------
+  Spawning the server             Initializing the server state
+  Storing the loop data           The loop data
+  Sending requests to the server  The client requests
+  Sending replies to the client   Handling client requests
+  Receiving server replies        Contents of server reply
+  Stopping the server             Cleaning up
+
+  behavior module + callback module
+
+  Generic server
+    Used to model client-server behaviors
+  Generic finite state machine
+    Used for FSM programming
+  Generic event handler/manager
+    Used for writing event handlers
+  Supervisor
+    Used for fault-tolerant supervision trees
+  Application
+    Used to encapsulate resources and functionality
+
+Extracting Generic Behaviors
+
+The Generic Server
+
+Message Passing: Under the Hood
