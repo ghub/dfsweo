@@ -117,3 +117,98 @@ Extracting Generic Behaviors
 The Generic Server
 
 Message Passing: Under the Hood
+
+Chapter 4. Generic Servers
+
+Generic Servers
+
+  gen_server
+    start and stop the server
+    send synchronous and asynchronous messages
+    software upgrade
+    timeout
+
+Behavior Directives
+
+Starting a Server
+
+  gen_server:start_link({local, Name}, Mod, Args, Opts) ->
+      {ok, Pid} | ignore | {error, Reason}
+  Mod:init(Args) ->
+      {ok, LoopData} | ignore | {stop, Reason}
+
+  Starting a generic server behavior process is a synchronous operation.
+
+Message Passing
+
+  Synchronous Message Passing
+
+    gen_server:call(Name, Message) ->
+        Reply
+    Mod:handle_call(Message, From, LoopData) ->
+        {reply, Reply, NewLoopData} | {stop, Reason, Reply, LoopData}
+
+  Asynchronous Message Passing
+`
+    gen_server:cast(Name, Message) ->
+        ok
+    Mod:handle_cast(Message, LoopData) ->
+        {noreply, NewLoopData} | {stop, Reason, LoopData}
+
+  Other Messages
+
+    Mod:handle_info(Message, LoopData) ->
+        {noreply, LoopData} | {stop, Reason, LoopData}
+
+  Unhandled Messages
+
+  Synchronizing Clients
+
+Termination
+
+  Mod:terminate(Reason, LoopData) -> Term
+
+Call Timeouts
+
+  gen_server:call(Server, Message, TimeOut) -> Reply
+
+Deadlocks
+
+  Yound call old
+  Old cast yound
+
+Generic Server Timeouts
+
+  gen_server timeout
+  erlang:send_after/3
+  timer
+    apply_after/3
+    send_after/2
+    apply_interval/4
+    send_interval/2
+
+  Hibernating Behaviors
+
+Going Global
+
+  gen_server:start_link({global,Name},Mod,Args,Opts) ->
+      {ok, Pid} | ignore | {error, Reason}
+  gen_server:call({global, Name}, Message) -> Reply
+  gen_server:cast({global, Name}, Message) -> ok
+
+  gen_server:start_link({via, Module, Name},Mod,Args,Opts) -> {ok, Pid}
+  gen_server:call({via, Module, Name}, Message) -> Reply
+  gen_server:cast({via, Module, Name}, Message) -> ok
+
+  gen_server:start_link(Mod, Args, Opts) ->
+      {ok, Pid} | ignore | {error, Reason}
+
+  gen_server:multi_call(Nodes, Name, Request [, Timeout]) ->
+      {[{Node,Reply}], BadNodes}
+  gen_server:abcast(Nodes, Name, Request) -> abcast
+
+Linking Behaviors
+
+  gen_server:start(NameScope,Mod,Args,Opts)
+  gen_server:start(Mod,Args,Opts) ->
+      {ok, Pid} | {error, {already_started, Pid}}
