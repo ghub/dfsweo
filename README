@@ -212,3 +212,72 @@ Linking Behaviors
   gen_server:start(NameScope,Mod,Args,Opts)
   gen_server:start(Mod,Args,Opts) ->
       {ok, Pid} | {error, {already_started, Pid}}
+
+Chapter 5. Controlling OTP Behaviors
+
+The sys Module
+
+  Tracing and Logging
+
+    sys:trace/2
+    sys:log/2
+    sys:log_to_file/2
+
+  System Messages
+
+    {in, Msg}
+    {out, Msg, To, State}
+    term()
+
+  Your Own Trace Functions
+
+    sys:install/2
+    sys:remove/2
+
+  Statistics, Status, and State
+
+    sys:statistics/2
+    sys:get_status/1
+    sys:suspend/1
+    sys:resume/1
+    sys:get_state/1
+    sys:replace_state/2
+
+  The sys Module Recap
+
+    sys:trace(Name,TraceFlag [,Timeout]) -> ok
+
+    sys:log(Name,LogFlag [,Timeout]) -> ok | {ok, EventList}
+    sys:log_to_file(Name,FileFlag [,Timeout]) -> ok | {error, open_file}
+
+    sys:install(Name,{Func,FuncState} [,Timeout]) -> ok
+    sys:remove(Name,Func [,Timeout])
+
+    sys:statistics(Name,Flag [,Timeout]) -> ok | {ok, Statistics}.
+
+    sys:get_status(Name [,Timeout]) -> {status, Pid, {module, Mod}, Status}
+
+    sys:get_state(Name [,Timeout]) -> State
+
+    sys:replace_state(Name,ReplaceFun [,Timeout]) -> State
+
+    sys:suspend(Name [,Timeout]) -> ok
+    sys:resume(Name [,Timeout]) -> ok
+
+Spawn Options
+
+  Memory Management and Garbage Collection
+
+    min_heap_size
+    min_bin_vheap_size
+    fullsweep_after
+
+  Spawn Options to Avoid
+
+    monitor
+    link
+    priority
+
+Timeouts
+
+  Avoid timeout in init. Prefer working less.
