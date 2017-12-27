@@ -281,3 +281,80 @@ Spawn Options
 Timeouts
 
   Avoid timeout in init. Prefer working less.
+
+Chapter 6. Finite State Machines
+
+Finite State Machines the Erlang Way
+
+  Each state is represented within a tail-recursive function.
+  Events are represented as messages.
+
+Coffee FSM
+
+  The Hardware Stub
+
+  The Erlang Coffee Machine
+
+    Starting
+    The events
+    The selection state
+    The payment state
+    The remove state
+
+Generic FSMs
+
+  Generic                       Specific
+  --------------------------------------
+  Spawning the FSM              Initializing the FSM state
+  Storing the loop data         The loop data
+  Sending events to the FSM     The events
+  Sending synchronous requests  Handling events/requests
+  Receiving replies             The FSM states
+  Timeouts                      State transitions
+  Stopping the FSM              Cleaning up
+
+A Behavior Example
+
+  Starting the FSM
+
+  Sending Events
+
+    Asynchronous events
+    Defining states
+    Timeouts
+    Asynchronous evnets to all states
+    Synchronous events
+    Termination
+
+Summing Up
+
+  gen_fsm function or action                        gen_fsm callback function
+  ---------------------------------------------------------------            
+  gen_fsm:start/3
+  gen_fsm:start/4
+  gen_fsm:start_link/3
+  gen_fsm:start_link/4                              Module:init/1
+
+  gen_fsm:send_event/2                              Module:StateName/2
+
+  gen_fsm:send_all_state_event/2                    Module:handle_event/3
+
+  gen_fsm:sync_send_event/2
+  gen_fsm:sync_send_event/3                         Module:StateName/3
+
+  gen_fsm:sync_send_all_state_event/2
+  gen_fsm:sync_send_all_state_event/3               Module:handle_sync_event/4
+
+  Pid ! Msg
+  monitors
+  exit messages
+  messages from ports and socket
+  node monitors
+  and other non-OTP messages                        Module:handle_info/2
+
+  Triggered by returning {stop, ...} or
+  when terminating abnormally while trapping exits  Module:terminate/3
+
+Get Your Hands Dirty
+
+  The Phone Controllers
