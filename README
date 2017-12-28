@@ -329,7 +329,7 @@ A Behavior Example
 Summing Up
 
   gen_fsm function or action                        gen_fsm callback function
-  ---------------------------------------------------------------            
+  ---------------------------------------------------------------
   gen_fsm:start/3
   gen_fsm:start/4
   gen_fsm:start_link/3
@@ -358,3 +358,64 @@ Summing Up
 Get Your Hands Dirty
 
   The Phone Controllers
+
+Chapter 7. Event Handlers
+
+Events
+
+  Producer
+  Event manager
+  Consumer
+
+  Generic                                 Specific
+  ------------------------------------------------
+  Starting/stopping the event manager     The events
+  Sending events                          The event handlers
+  Sending synchronous requests            Initializing event handlers
+  Forwarding events/requests to handlers  Event handler loop data
+  Adding/deleting handlers                Handling events/requests
+  Upgrading handlers                      Cleaning up
+
+Generic Event Managers and Handlers
+
+  Starting and Stopping Event Managers
+  Adding Event Handlers
+  Deleting an Event Handler
+  Sending Synchronous and Asynchronous Events
+  Retrieving Data
+  Handling Errors and Invalid Return Values
+  Swapping Event Handlers
+  Wrapping It All Up
+
+The SASL Alarm Handler
+
+Summing Up
+
+gen_event function or action    gen_event callback function
+-----------------------------------------------------------
+
+gen_event:start/0
+gen_event:start/1
+gen_event:start_link/0
+gen_event:start_link/1
+
+gen_event:add_handler/3
+gen_event:add_sup_handler/3     Module:init/1
+
+gen_event:swap_handler/3        Module1:terminate/2
+gen_event:swap_sup_handler/3    Module2:init/1
+
+gen_event:notify/2
+gen_event:sync_notify/2         Module:handle_event/2
+gen_event:call/3
+gen_event:call/4                Module:handle_call/2
+
+gen_event:delete_handler/3      Module:terminate/2
+gen_event:stop/1                Module:terminate/2
+
+Pid ! Msg
+monitors
+exit messages
+messages from ports and socket
+node monitors
+and other non-OTP messages      Module:handle_info/2
